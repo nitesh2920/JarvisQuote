@@ -10,11 +10,11 @@ import {
   CardContent,
   CardFooter
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useTheme } from "@/components/ui/theme-provider";
 import { useCopilotReadable, useCopilotAction } from "@copilotkit/react-core";
+import { CopilotTextarea } from '@copilotkit/react-textarea';
+import "@copilotkit/react-textarea/styles.css";
 
 const DEFAULT_QUOTES = [
   {
@@ -123,7 +123,6 @@ export function MainComponent() {
     setUserName("");
   };
   const { theme } = useTheme();
-  // const memoizedQuotes = useMemo(() => sharedQuotes, [sharedQuotes]);
 
   const shareQuote = (quote) => {
     const shareText = encodeURIComponent(
@@ -132,6 +131,7 @@ export function MainComponent() {
     const twitterUrl = `https://x.com/intent/tweet?text=${shareText}`;
     window.open(twitterUrl, "_blank");
   };
+
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Daily Quotes</h2>
@@ -186,20 +186,25 @@ export function MainComponent() {
       <Card>
         <CardHeader>
           <CardTitle>Share Your Quote</CardTitle>
-          <CardDescription>Inspire others with your own words</CardDescription>
+          <CardDescription>Inspire others with your own words (autoCompletion enabled)</CardDescription>
         </CardHeader>
         <CardContent>
-          <Textarea
-            placeholder="Enter your motivational quote..."
+        <CopilotTextarea
+            className=""
             value={userQuote}
-            onChange={(e) => setUserQuote(e.target.value)}
-            className="mb-4"
-          />
-          <Input
-            placeholder="Your name (optional)"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            className="mb-4"
+            onValueChange={(value) => setUserQuote(value)}
+            placeholder="Enter your motivational quote..."
+            disableBranding="true"
+            autosuggestionsConfig={{
+              textareaPurpose: "Generate a motivational or educational quote .",
+              chatApiConfigs: {
+                suggestionsApiConfig: {
+                  maxTokens: 20,
+                  stop: [".", "?", "!"],
+                },
+              },
+            }}
+            
           />
         </CardContent>
         <CardFooter>
