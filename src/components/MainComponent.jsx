@@ -166,14 +166,14 @@ export function MainComponent() {
               <p
                 className={`text-xl font-serif italic ${
                   index === 0 ? "" : "text-gray-700"
-                } ${theme === "dark" ? "text-white" : ""}`}
+                } ${theme === "dark" || theme==="system" ? "text-white" : ""}`}
               >
                 "{quote.content}"
               </p>
               <p
                 className={`mt-4 text-right font-medium ${
                   index === 0 ? "" : "text-gray-600"
-                } ${theme === "dark" ? "text-white" : ""}`}
+                } ${theme === "dark" || theme==="system" ? "text-white" : ""}`}
               >
                 - {quote.author}
               </p>
