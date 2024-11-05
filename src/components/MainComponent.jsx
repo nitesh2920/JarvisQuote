@@ -13,7 +13,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useTheme } from "@/components/ui/theme-provider";
 import { useCopilotReadable, useCopilotAction } from "@copilotkit/react-core";
-import { CopilotTextarea } from '@copilotkit/react-textarea';
+import { CopilotTextarea } from "@copilotkit/react-textarea";
 import "@copilotkit/react-textarea/styles.css";
 
 const DEFAULT_QUOTES = [
@@ -40,7 +40,6 @@ export function MainComponent() {
   const [userName, setUserName] = useState("");
   const [sharedQuotes, setSharedQuotes] = useState(DEFAULT_QUOTES);
   const { toast } = useToast();
-
 
   useCopilotReadable({
     description: "The list of SharedQuotes",
@@ -76,7 +75,7 @@ export function MainComponent() {
         name: "index",
         type: "number",
         description: "The name or index of the quote to be deleted",
-        required: true,
+        required: true
       }
     ],
     handler: ({ index }) => {
@@ -86,9 +85,7 @@ export function MainComponent() {
   });
 
   const addQuote = (quote, author) => {
-
     const newQuote = {
-     
       content: quote,
       author: author.trim() || "John Doe"
     };
@@ -132,6 +129,7 @@ export function MainComponent() {
     window.open(twitterUrl, "_blank");
   };
 
+
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Daily Quotes</h2>
@@ -166,14 +164,18 @@ export function MainComponent() {
               <p
                 className={`text-xl font-serif italic ${
                   index === 0 ? "" : "text-gray-700"
-                } ${theme === "dark" || theme==="system" ? "text-white" : ""}`}
+                } ${
+                  theme === "dark" || theme === "system" ? "text-white" : ""
+                }`}
               >
                 "{quote.content}"
               </p>
               <p
                 className={`mt-4 text-right font-medium ${
                   index === 0 ? "" : "text-gray-600"
-                } ${theme === "dark" || theme==="system" ? "text-white" : ""}`}
+                } ${
+                  theme === "dark" || theme === "system" ? "text-white" : ""
+                }`}
               >
                 - {quote.author}
               </p>
@@ -186,25 +188,32 @@ export function MainComponent() {
       <Card>
         <CardHeader>
           <CardTitle>Share Your Quote</CardTitle>
-          <CardDescription>Inspire others with your own words (autoCompletion enabled)</CardDescription>
+          <CardDescription>
+            Inspire others with your own words (AutoCompletion Enabled)
+          </CardDescription>
         </CardHeader>
         <CardContent>
-        <CopilotTextarea
-            className=""
+          <CopilotTextarea
+            className="custom-hover-menu flex place-items-center whitespace-normal break-normal resize-y min-h-[36px] h-auto w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 "
             value={userQuote}
             onValueChange={(value) => setUserQuote(value)}
             placeholder="Enter your motivational quote..."
-            disableBranding="true"
+            disableBranding={true}
+            suggestionsStyle={{
+              color:'red',
+               overflowWrap:'normal'
+            }}
+
+
             autosuggestionsConfig={{
-              textareaPurpose: "Generate a motivational or educational quote .",
+              textareaPurpose: "Generate a motivational or educational quote in a single line.",
               chatApiConfigs: {
                 suggestionsApiConfig: {
                   maxTokens: 20,
-                  stop: [".", "?", "!"],
-                },
-              },
+                  stop: [".", "?", "!"]
+                }
+              }
             }}
-            
           />
         </CardContent>
         <CardFooter>

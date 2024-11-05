@@ -64,3 +64,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+.custom-hover-menu {
+ 
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+}
