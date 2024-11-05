@@ -194,19 +194,14 @@ export function MainComponent() {
         </CardHeader>
         <CardContent>
           <CopilotTextarea
-            className="custom-hover-menu flex place-items-center whitespace-normal break-normal resize-y min-h-[36px] h-auto w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 "
+            className="custom-hover-menu 
+ flex place-items-center resize-y min-h-[36px] h-auto w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 "
             value={userQuote}
             onValueChange={(value) => setUserQuote(value)}
             placeholder="Enter your motivational quote..."
             disableBranding={true}
-            suggestionsStyle={{
-              color:'red',
-               overflowWrap:'normal'
-            }}
-
-
             autosuggestionsConfig={{
-              textareaPurpose: "Generate a motivational or educational quote in a single line.",
+              textareaPurpose: "only give suggestion fora motivational or educational quote etc.",
               chatApiConfigs: {
                 suggestionsApiConfig: {
                   maxTokens: 20,
