@@ -16,8 +16,8 @@ function App() {
         Fallback:
         - If unable to generate a quote, apologize and suggest a random quote from a well-known author.`}
         labels={{
-          title: "Jarvis Assistant",
-          initial: "Welcome! I'm here to help. What do you need?"
+          title: "QuoteGenie",
+          initial: "Welcome ! I’m QuoteGenie, here to fuel your ambition with the perfect quote."
         }}
       />
     </>
