@@ -15,6 +15,7 @@ import { useTheme } from "@/components/ui/theme-provider";
 import { useCopilotReadable, useCopilotAction } from "@copilotkit/react-core";
 import { CopilotTextarea } from "@copilotkit/react-textarea";
 import "@copilotkit/react-textarea/styles.css";
+import { Input } from "./ui/input";
 
 const DEFAULT_QUOTES = [
   {
@@ -129,7 +130,6 @@ export function MainComponent() {
     window.open(twitterUrl, "_blank");
   };
 
-
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Daily Quotes</h2>
@@ -195,13 +195,22 @@ export function MainComponent() {
         <CardContent>
           <CopilotTextarea
             className="custom-hover-menu 
- flex place-items-center resize-y min-h-[36px] h-auto w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 "
+ flex place-items-center resize-y min-h-[36px] h-auto w-full rounded-md border border-input  px-3 py-1 text-sm 
+ shadow-sm transition-colors file:border-0  
+ focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             value={userQuote}
             onValueChange={(value) => setUserQuote(value)}
-            placeholder="Enter your motivational quote..."
-            disableBranding={true}
+            placeholder="Enter your Quote..."
+            placeholderStyle={{
+              color: "rgb(100,116,139)",
+              opacity: "1",
+              fontSize: "0.875rem",
+              fontWeight: "400"
+            }}
+            // disableBranding={true}
             autosuggestionsConfig={{
-              textareaPurpose: "only give suggestion fora motivational or educational quote etc.",
+              textareaPurpose:
+                "only give suggestion for a motivational or educational quote etc.",
               chatApiConfigs: {
                 suggestionsApiConfig: {
                   maxTokens: 20,
@@ -209,6 +218,12 @@ export function MainComponent() {
                 }
               }
             }}
+          />
+          <Input
+            placeholder="Your name (optional)"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            className="mt-4 px-3 py-1 text-sm shadow-sm placeholder:text-slate-500"
           />
         </CardContent>
         <CardFooter>

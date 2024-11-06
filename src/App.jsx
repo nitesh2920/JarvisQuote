@@ -19,7 +19,8 @@ function App() {
           title: "QuoteGenie",
           initial: "Welcome ! I’m QuoteGenie, here to fuel your ambition with the perfect quote."
         }}
-      />
+         className=""
+/>
     </>
   );
 }
